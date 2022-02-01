@@ -57,28 +57,12 @@ def find_in_file(pattern, filename):
     140 Shall be lifted- nevermore!
     """
 
-    # f = open(filename)
-    # try:
-    #     line_num = 0
-    #     for line in f:
-    #         char_num = 0
-    #         while line[char_num] == ' ':
-    #             char_num = char_num + 1
-    #         line = line[char_num: -1]
-    #         if pattern.lower() in line.lower():
-    #             spaces = ''
-    #             if line_num < 10:
-    #                 spaces = '  '
-    #             elif line_num < 100:
-    #                 spaces = ' '
-    #             print(spaces + str(line_num) + ' ' + line)
-    #         line_num += 1
-    # finally:
-    #     f.close()
     with open('raven.txt', 'r') as f:
         l = [(key, value.strip()) for key, value in enumerate(f.readlines()) if pattern.lower() in value.lower()]
     for i in l:
         print(f'{i[0] if len(str(i[0])) > 2 else " " + str(i[0])} {i[1]}')
+
+
 def read_long_words(filename, min_length=0):
     """
     >>> words = read_long_words('raven.txt', 5)
@@ -86,24 +70,28 @@ def read_long_words(filename, min_length=0):
     ['midnight', 'dreary', 'pondered', 'quaint', 'curious', 'volume']
     """
 
-    f = open(filename)
-    try:
-        content = f.read()
-    finally:
-        f.close()
+    # f = open(filename)
+    # try:
+    #     content = f.read()
+    # finally:
+    #     f.close()
 
-    # Remove punctuation
-    no_punct = []
-    for ch in content:
-        if ch not in r'[.,"!-]':
-            no_punct.append(ch)
-    content = ''.join(no_punct)
-    result = []
-    for word in content.split():
-        if len(word) > min_length:
-            result.append(word.lower())
-    return result
+    # # Remove punctuation
+    # no_punct = []
+    # for ch in content:
+    #     if ch not in r'[.,"!-]':
+    #         no_punct.append(ch)
+    # content = ''.join(no_punct)
+    # result = []
+    # for word in content.split():
+    #     if len(word) > min_length:
+    #         result.append(word.lower())
+    # return result
+    with open(filename, 'r') as f:
+        x = "".join([x for x in f.read() if x not in r'[.,"!-]' ])
+    return [i.lower() for i in x.split() if len(i) > min_length]
 
+print(read_long_words('raven.txt', 5))
 
 def top_words(words, n=10):
     """

@@ -5,7 +5,6 @@ def parse_user_data(line):
     """
     return (line.split()[0], line.split()[1], (line.split()[2]).split('@')[0],(line.split()[2]).split('@')[1])
 
-# print(parse_user_data('John Doe john.doe@example.com'))
 def compare_lists(dir_a, dir_b):
     """
     >>> dir_a = ['hello.py', 'readme.txt']
@@ -24,25 +23,8 @@ def print_log(message, process_id, timestamp, level=2):
     2019-01-02 10:30:55 [1532] [INFO] System started!
     """
     levels = {0: 'TRACE', 1: 'DEBUG', 2: 'INFO', 3: 'WARN', 4: 'ERROR'}
-    # line = timestamp
-    # line += ' [' + str(process_id) + ']'
-    # if level == 0:
-    #     loglevel = 'TRACE'
-    # elif level == 1:
-    #     loglevel = 'DEBUG'
-    # elif level == 2:
-    #     loglevel = 'INFO'
-    # elif level == 3:
-    #     loglevel = 'WARN'
-    # elif level == 4:
-    #     loglevel = 'ERROR'
-    # else:
-    #     loglevel = 'None'
-    # line += ' [' + loglevel + ']'
-    # line += ' ' + message
-    # print(line)
     print(f'{timestamp} [{process_id}] [{levels[level]}] {message}')
-print_log('System started!', 1532, datetime(2019, 1, 2, 10, 30, 55).isoformat(' '))
+
 def biggest_rectangle(rectangles):
     """
     Find the biggest rectangle in a sequence.
@@ -52,11 +34,15 @@ def biggest_rectangle(rectangles):
     (3, 3)
     """
 
-    best = rectangles[0]
-    for r in rectangles:
-        if r[0] * r[1] > best[0] * best[1]:
-            best = r
-    return best
+    # best = rectangles[0]
+    # for r in rectangles:
+    #     if r[0] * r[1] > best[0] * best[1]:
+    #         best = r
+    # return best
+
+    return sorted(rectangles, key = lambda x: (x[0]*x[1]), reverse = True)[0]
+
+print(biggest_rectangle([(2, 4), (3, 3), (4, 2), (5,5)]))
 
 
 def find_in_file(pattern, filename):

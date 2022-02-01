@@ -34,15 +34,8 @@ def biggest_rectangle(rectangles):
     (3, 3)
     """
 
-    # best = rectangles[0]
-    # for r in rectangles:
-    #     if r[0] * r[1] > best[0] * best[1]:
-    #         best = r
-    # return best
-
     return sorted(rectangles, key = lambda x: (x[0]*x[1]), reverse = True)[0]
 
-print(biggest_rectangle([(2, 4), (3, 3), (4, 2), (5,5)]))
 
 
 def find_in_file(pattern, filename):
@@ -64,26 +57,28 @@ def find_in_file(pattern, filename):
     140 Shall be lifted- nevermore!
     """
 
-    f = open(filename)
-    try:
-        line_num = 0
-        for line in f:
-            char_num = 0
-            while line[char_num] == ' ':
-                char_num = char_num + 1
-            line = line[char_num: -1]
-            if pattern.lower() in line.lower():
-                spaces = ''
-                if line_num < 10:
-                    spaces = '  '
-                elif line_num < 100:
-                    spaces = ' '
-                print(spaces + str(line_num) + ' ' + line)
-            line_num += 1
-    finally:
-        f.close()
-
-
+    # f = open(filename)
+    # try:
+    #     line_num = 0
+    #     for line in f:
+    #         char_num = 0
+    #         while line[char_num] == ' ':
+    #             char_num = char_num + 1
+    #         line = line[char_num: -1]
+    #         if pattern.lower() in line.lower():
+    #             spaces = ''
+    #             if line_num < 10:
+    #                 spaces = '  '
+    #             elif line_num < 100:
+    #                 spaces = ' '
+    #             print(spaces + str(line_num) + ' ' + line)
+    #         line_num += 1
+    # finally:
+    #     f.close()
+    with open('raven.txt', 'r') as f:
+        l = [(key, value.strip()) for key, value in enumerate(f.readlines()) if pattern.lower() in value.lower()]
+    for i in l:
+        print(f'{i[0] if len(str(i[0])) > 2 else " " + str(i[0])} {i[1]}')
 def read_long_words(filename, min_length=0):
     """
     >>> words = read_long_words('raven.txt', 5)

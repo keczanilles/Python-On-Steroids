@@ -69,29 +69,10 @@ def read_long_words(filename, min_length=0):
     >>> words[:6]
     ['midnight', 'dreary', 'pondered', 'quaint', 'curious', 'volume']
     """
-
-    # f = open(filename)
-    # try:
-    #     content = f.read()
-    # finally:
-    #     f.close()
-
-    # # Remove punctuation
-    # no_punct = []
-    # for ch in content:
-    #     if ch not in r'[.,"!-]':
-    #         no_punct.append(ch)
-    # content = ''.join(no_punct)
-    # result = []
-    # for word in content.split():
-    #     if len(word) > min_length:
-    #         result.append(word.lower())
-    # return result
     with open(filename, 'r') as f:
         x = "".join([x for x in f.read() if x not in r'[.,"!-]' ])
     return [i.lower() for i in x.split() if len(i) > min_length]
 
-print(read_long_words('raven.txt', 5))
 
 def top_words(words, n=10):
     """
@@ -102,18 +83,4 @@ def top_words(words, n=10):
     [('chamber', 11), ('nevermore', 10), ('lenore', 8), ('nothing', 7), ('tapping', 5)]
     """
 
-    word_counts = {}
-    for word in words:
-        if word in word_counts:
-            word_counts[word] += 1
-        else:
-            word_counts[word] = 1
-
-    result = []
-    for word, count in word_counts.items():
-        # Append (count, word) so that we sort by count.
-        result.append((count, word))
-
-    result.sort(reverse=True)
-    result = result[:n]
-    return [(count, word) for (word, count) in result]
+    return sorted([(x, words.count(x)) for x in set(words)], key = lambda x : x[1], reverse = True)[:n]

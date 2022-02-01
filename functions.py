@@ -3,20 +3,9 @@ def parse_user_data(line):
     >>> parse_user_data('John Doe john.doe@example.com')
     ('John', 'Doe', 'john.doe', 'example.com')
     """
+    return (line.split()[0], line.split()[1], (line.split()[2]).split('@')[0],(line.split()[2]).split('@')[1])
 
-    parts = line.split(' ')
-    first_name = parts[0]
-    last_name = parts[1]
-    email = parts[2]
-
-    email_parts = email.split('@')
-    user = email_parts[0]
-    host = email_parts[1]
-
-    response = (first_name, last_name, user, host)
-    return response
-
-
+# print(parse_user_data('John Doe john.doe@example.com'))
 def compare_lists(dir_a, dir_b):
     """
     >>> dir_a = ['hello.py', 'readme.txt']
@@ -25,45 +14,35 @@ def compare_lists(dir_a, dir_b):
     {'removed': ['hello.py'], 'added': ['hello2.py', 'install.txt']}
     """
 
-    removed = []
-    for filename in dir_a:
-        if filename not in dir_b:
-            removed.append(filename)
+    return {'removed': sorted([x for x in dir_a if x not in dir_b]), 'added': sorted([x for x in dir_b if x not in dir_a])}
 
-    added = []
-    for filename in dir_b:
-        if filename not in dir_a:
-            added.append(filename)
-
-    return {'removed': sorted(removed), 'added': sorted(added)}
-
-
+from datetime import datetime 
 def print_log(message, process_id, timestamp, level=2):
     """
     >>> from datetime import datetime
     >>> print_log('System started!', 1532, datetime(2019, 1, 2, 10, 30, 55).isoformat(' '))
     2019-01-02 10:30:55 [1532] [INFO] System started!
     """
-
-    line = timestamp
-    line += ' [' + str(process_id) + ']'
-    if level == 0:
-        loglevel = 'TRACE'
-    elif level == 1:
-        loglevel = 'DEBUG'
-    elif level == 2:
-        loglevel = 'INFO'
-    elif level == 3:
-        loglevel = 'WARN'
-    elif level == 4:
-        loglevel = 'ERROR'
-    else:
-        loglevel = 'None'
-    line += ' [' + loglevel + ']'
-    line += ' ' + message
-    print(line)
-
-
+    levels = {0: 'TRACE', 1: 'DEBUG', 2: 'INFO', 3: 'WARN', 4: 'ERROR'}
+    # line = timestamp
+    # line += ' [' + str(process_id) + ']'
+    # if level == 0:
+    #     loglevel = 'TRACE'
+    # elif level == 1:
+    #     loglevel = 'DEBUG'
+    # elif level == 2:
+    #     loglevel = 'INFO'
+    # elif level == 3:
+    #     loglevel = 'WARN'
+    # elif level == 4:
+    #     loglevel = 'ERROR'
+    # else:
+    #     loglevel = 'None'
+    # line += ' [' + loglevel + ']'
+    # line += ' ' + message
+    # print(line)
+    print(f'{timestamp} [{process_id}] [{levels[level]}] {message}')
+print_log('System started!', 1532, datetime(2019, 1, 2, 10, 30, 55).isoformat(' '))
 def biggest_rectangle(rectangles):
     """
     Find the biggest rectangle in a sequence.

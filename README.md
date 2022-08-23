@@ -64,21 +64,3 @@ descending count.
 ## General requirements
 
 - There are no nasty tricks in the code to reduce actual line numbers, such as using semicolons (`print(x); print(y); print(z)`), or using dynamic code evaluation tools (`eval` or `exec`).
-
-## Hints
-
-- Run the included doctests by running `python3 -m doctest
-  functions.py`. Add the `-v` switch for a more verbose report.
-- Try using the language features linked in the
-  Background materials section.
-
-## Background materials
-
-- [`max`](https://docs.python.org/3/library/functions.html#max) and [`sort`](https://docs.python.org/3/library/stdtypes.html#list.sort) with using the `key` parameter
-- [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
-- [sets](https://docs.python.org/3/tutorial/datastructures.html#sets)
-- [sequence packing and unpacking](https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences)
-- [`enumerate`](https://docs.python.org/3/library/functions.html#enumerate)
-- [`with` statement](https://docs.python.org/3/reference/compound_stmts.html#with) (for [reading files](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files))
-- [string formatting](https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting) (f-strings or `.format()`)
-- [`collections.Counter()`](https://docs.python.org/3/library/collections.html#collections.Counter)
